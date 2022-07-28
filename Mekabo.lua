@@ -5168,18 +5168,15 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/MoviesDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == "البنك" or text == "بنك" or text == "بنكي" then
-return LuaTele.sendText(msg.chat_id,msg.id,"- اوامر البنك\n\n- انشاء حساب بنكي  ↢ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n- مسح حساب بنكي  ↢ تلغي حسابك البنكي\n\n- تحويل ↢ تطلب رقم حساب الشخص وتحول له فلوس\n\n- حسابي  ↢ يطلع لك رقم حسابك عشان تعطيه للشخص اللي بيحول لك\n\n- فلوسي ↢ يعلمك كم فلوسك\n\n- راتب ↢ يعطيك راتب كل ١٠ دقائق\n\n- بخشيش ↢ يعطيك بخشيش كل ١٠ دقايق\n\n- زرف ↢ تزرف فلوس اشخاص كل ١٠ دقايق\n\n- استثمار ↢ تستثمر بالمبلغ اللي تبيه مع نسبة ربح مضمونه من ١٪؜ الى ١٥٪؜\n\n- حظ ↢ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n- مضاربه ↢ تضارب بأي مبلغ تبيه والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n- توب الفلوس ↢ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n- توب الحراميه ↢ يطلع لك اكثر ناس زرفوا\n\n- زواج  ↢ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n- طلاق ↢ يطلقك اذا متزوج\n\n- خلع  ↢ يخلع زوجك ويرجع له المهر -","md",true)
-end
 if text == "توب الحراميه" or text == "الحراميه" then
-local bank_users = Redis:smembers(TheMekabo.."zrfffidtf")
+local bank_users = Redis:smembers(itsSnap.."zrfffidtf")
 if #bank_users == 0 then
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : لا يوجد حراميه في البنك","md",true)
 end
 top_mony = "توب اكثر 20 شخص حرامية فلوس:\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
-local mony = Redis:get(TheMekabo.."zrffdcf"..v) or 0
+local mony = Redis:get(itsSnap.."zrffdcf"..v) or 0
 table.insert(mony_list, {tonumber(mony) , v})
 end
 table.sort(mony_list, function(a, b) return a[1] > b[1] end)
@@ -5214,7 +5211,7 @@ newss = "["..banb.first_name.."]"
 else
 newss = " لا يوجد"
 end
-fne = Redis:get(TheMekabo..':toob:Name:'..v[2])
+fne = Redis:get(itsSnap..':toob:Name:'..v[2])
 tt =  newss
 local mony = v[1]
 local emo = emoji[k]
@@ -5234,15 +5231,15 @@ news = "["..ban.first_name.."]("..ban.first_name..")"
 else
 news = " لا يوجد"
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
-local bank_users = Redis:smembers(TheMekabo.."ttpppi")
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
+local bank_users = Redis:smembers(itsSnap.."ttpppi")
 if #bank_users == 0 then
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : لا يوجد حسابات في البنك","md",true)
 end
 top_mony = "توب اغنى 20 شخص :\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
-local mony = Redis:get(TheMekabo.."nool:flotysb"..v) or 0
+local mony = Redis:get(itsSnap.."nool:flotysb"..v) or 0
 table.insert(mony_list, {tonumber(mony) , v})
 end
 table.sort(mony_list, function(a, b) return a[1] > b[1] end)
@@ -5277,7 +5274,7 @@ newss = "["..banb.first_name.."]"
 else
 newss = " لا يوجد"
 end
-fne = Redis:get(TheMekabo..':toob:Name:'..v[2])
+fne = Redis:get(itsSnap..':toob:Name:'..v[2])
 tt =  newss
 local mony = v[1]
 local emo = emoji[k]
@@ -5291,14 +5288,14 @@ end
 return LuaTele.sendText(msg.chat_id,msg.id,top_mony..gg,"md",true)
 end
 if text == "توب المتزوجين" then
-local bank_users = Redis:smembers(TheMekabo.."almtzog"..msg_chat_id)
+local bank_users = Redis:smembers(itsSnap.."almtzog"..msg_chat_id)
 if #bank_users == 0 then
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : لا يوجد متزوجين بالقروب","md",true)
 end
 top_mony = "توب اغنى 10 زوجات بالقروب :\n\n"
 mony_list = {}
 for k,v in pairs(bank_users) do
-local mony = Redis:get(TheMekabo.."mznom"..msg_chat_id..v) 
+local mony = Redis:get(itsSnap.."mznom"..msg_chat_id..v) 
 table.insert(mony_list, {tonumber(mony) , v})
 end
 table.sort(mony_list, function(a, b) return a[1] > b[1] end)
@@ -5317,10 +5314,10 @@ emoji ={
 }
 for k,v in pairs(mony_list) do
 if num <= 10 then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..v[2].."rgalll2:")
+local zwga_id = Redis:get(itsSnap..msg_chat_id..v[2].."rgalll2:")
 local user_name = LuaTele.getUser(v[2]).first_name
-fne = Redis:get(TheMekabo..':toob:Name:'..zwga_id)
-fnte = Redis:get(TheMekabo..':toob:Name:'..v[2])
+fne = Redis:get(itsSnap..':toob:Name:'..zwga_id)
+fnte = Redis:get(itsSnap..':toob:Name:'..v[2])
 local user_nambe = LuaTele.getUser(zwga_id).first_name
 
 local user_tag = '['..fnte..'](tg://user?id='..v[2]..')'
@@ -5354,26 +5351,26 @@ local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 if tonumber(Message_Reply.sender.user_id) == tonumber(msg.sender.user_id) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : غبي تبي تتزوج نفسك!\n","md",true)
 end
-if tonumber(Message_Reply.sender.user_id) == tonumber(TheMekabo) then
+if tonumber(Message_Reply.sender.user_id) == tonumber(itsSnap) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : غبي تبي تتزوج بوت!\n","md",true)
 end
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
 local albnt = LuaTele.getUser(zoog2)
-fne = Redis:get(TheMekabo..':toob:Name:'..zoog2)
+fne = Redis:get(itsSnap..':toob:Name:'..zoog2)
 albnt = "["..fne.."](tg://user?id="..zoog2..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : الحق ي : "..albnt.." زوجك يبي يتزوج ","md")
 end
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."rgalll2:") 
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."rgalll2:") 
 local id_rgal = LuaTele.getUser(zwga_id)
-fne = Redis:get(TheMekabo..':toob:Name:'..zwga_id)
+fne = Redis:get(itsSnap..':toob:Name:'..zwga_id)
 alzog = "["..fne.."](tg://user?id="..zwga_id..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : الحقي ي : "..alzog.." زوجتك تبي تتزوج ","md")
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(coniss) < 1000 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : المهر لازم اكثر من 1000 دينار  🪙\n","md",true)
 end
@@ -5381,33 +5378,33 @@ if tonumber(ballancee) < tonumber(coniss) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسك ماتكفي للمهر\n","md",true)
 end
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
-if Redis:get(TheMekabo..msg_chat_id..Message_Reply.sender.user_id.."rgalll2:") or Redis:get(TheMekabo..msg_chat_id..Message_Reply.sender.user_id.."bnttt2:") then
+if Redis:get(itsSnap..msg_chat_id..Message_Reply.sender.user_id.."rgalll2:") or Redis:get(itsSnap..msg_chat_id..Message_Reply.sender.user_id.."bnttt2:") then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : لا تقرب للمتزوجين \n","md",true)
 end
 UserNameyr = math.floor(coniss / 15)
 UserNameyy = math.floor(coniss - UserNameyr)
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") 
-Redis:set(TheMekabo..msg_chat_id..Message_Reply.sender.user_id.."bnttt2:", msg.sender.user_id)
-Redis:set(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:", Message_Reply.sender.user_id)
-Redis:set(TheMekabo..msg_chat_id..Message_Reply.sender.user_id.."mhrrr2:", UserNameyy)
-Redis:set(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:", UserNameyy)
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") 
+Redis:set(itsSnap..msg_chat_id..Message_Reply.sender.user_id.."bnttt2:", msg.sender.user_id)
+Redis:set(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:", Message_Reply.sender.user_id)
+Redis:set(itsSnap..msg_chat_id..Message_Reply.sender.user_id.."mhrrr2:", UserNameyy)
+Redis:set(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:", UserNameyy)
 local id_rgal = LuaTele.getUser(msg.sender.user_id)
 alzog = "["..id_rgal.first_name.."](tg://user?id="..msg.sender.user_id..") "
 local albnt = LuaTele.getUser(Message_Reply.sender.user_id)
 albnt = "["..albnt.first_name.."](tg://user?id="..Message_Reply.sender.user_id..") "
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , UserNameyy)
-Redis:incrby(TheMekabo.."nool:flotysb"..Message_Reply.sender.user_id , UserNameyy)
-Redis:incrby(TheMekabo.."mznom"..msg_chat_id..msg.sender.user_id , UserNameyy)
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id , UserNameyy)
+Redis:incrby(itsSnap.."nool:flotysb"..Message_Reply.sender.user_id , UserNameyy)
+Redis:incrby(itsSnap.."mznom"..msg_chat_id..msg.sender.user_id , UserNameyy)
 
-Redis:sadd(TheMekabo.."almtzog"..msg_chat_id,msg.sender.user_id)
+Redis:sadd(itsSnap.."almtzog"..msg_chat_id,msg.sender.user_id)
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : مبرووك تم زواجكم\n ‹ : الزوج :"..alzog.."\n ‹ : الزوجه :"..albnt.."\n ‹ : المهر : "..UserNameyy.." بعد خصم 15% \n ‹ : لعرض عقدكم اكتبو زواجي","md")
 end
 if text == "زوجي" then
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."rgalll2:") 
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."rgalll2:") 
 local id_rgal = LuaTele.getUser(zwga_id)
-fne = Redis:get(TheMekabo..':toob:Name:'..zwga_id)
+fne = Redis:get(itsSnap..':toob:Name:'..zwga_id)
 alzog = "["..id_rgal.first_name.."](tg://user?id="..zwga_id..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : ي : "..alzog.." زوجتك تبيك ","md")
 else
@@ -5416,11 +5413,11 @@ end
 end
 
 if text == "زوجتي" then
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
 local albnt = LuaTele.getUser(zoog2)
-fne = Redis:get(TheMekabo..':toob:Name:'..zoog2)
+fne = Redis:get(itsSnap..':toob:Name:'..zoog2)
 albnt = "["..albnt.first_name.."](tg://user?id="..zoog2..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : ي : "..albnt.." زوجك يبيك ","md")
 else
@@ -5428,31 +5425,31 @@ return LuaTele.sendText(msg_chat_id,msg_id," ‹ : اطلب الله ودورل�
 end
 end
 if text == "زواجي" then
-if not Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") and not Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") then
+if not Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") and not Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") then
 return LuaTele.sendText(msg_chat_id,msg_id,"- مامزوج حبي اعزب انته :","md")
 end
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:")
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:")
 print()
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."rgalll2:") 
-local mhrr = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."rgalll2:") 
+local mhrr = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
 local id_rgal = LuaTele.getUser(zwga_id)
-fne = Redis:get(TheMekabo..':toob:Name:'..zwga_id)
+fne = Redis:get(itsSnap..':toob:Name:'..zwga_id)
 alzog = "["..id_rgal.first_name.."](tg://user?id="..zwga_id..") "
 local albnt = LuaTele.getUser(zoog2)
-fnte = Redis:get(TheMekabo..':toob:Name:'..zoog2)
+fnte = Redis:get(itsSnap..':toob:Name:'..zoog2)
 albnt = "["..albnt.first_name.."](tg://user?id="..zoog2..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : عقد زواجكم\n ‹ : الزوج : "..alzog.."\n ‹ : الزوجه : "..albnt.." \n ‹ : المهر : "..mhrr.." دينار ","md")
 end
-if Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") then
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."bnttt2:") 
-local mhrr = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+if Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") then
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."bnttt2:") 
+local mhrr = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
 local id_rgal = LuaTele.getUser(zwga_id)
-fnte = Redis:get(TheMekabo..':toob:Name:'..zwga_id)
+fnte = Redis:get(itsSnap..':toob:Name:'..zwga_id)
 albnt = "["..id_rgal.first_name.."](tg://user?id="..zwga_id..") "
 local gg = LuaTele.getUser(zoog2)
-fntey = Redis:get(TheMekabo..':toob:Name:'..zoog2)
+fntey = Redis:get(itsSnap..':toob:Name:'..zoog2)
 alzog = "["..gg.first_name.."](tg://user?id="..zoog2..") "
 return LuaTele.sendText(msg_chat_id,msg_id," ‹ : عقد زواجكم\n ‹ : الزوج : "..alzog.."\n ‹ : الزوجه : "..albnt.." \n ‹ : المهر : "..mhrr.." دينار ","md")
 end
@@ -5465,12 +5462,12 @@ news = "["..ban.first_name.."]("..ban.first_name..")"
 else
 news = " لا يوجد"
 end
-if Redis:sismember(TheMekabo.."noooybgy",yemsg.sender.user_id) then
-cccc = Redis:get(TheMekabo.."noolb"..yemsg.sender.user_id)
-gg = Redis:get(TheMekabo.."nnonb"..yemsg.sender.user_id)
-uuuu = Redis:get(TheMekabo.."nnonbn"..yemsg.sender.user_id)
-pppp = Redis:get(TheMekabo.."zrffdcf"..yemsg.sender.user_id) or 0
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..yemsg.sender.user_id) or 0
+if Redis:sismember(itsSnap.."noooybgy",yemsg.sender.user_id) then
+cccc = Redis:get(itsSnap.."noolb"..yemsg.sender.user_id)
+gg = Redis:get(itsSnap.."nnonb"..yemsg.sender.user_id)
+uuuu = Redis:get(itsSnap.."nnonbn"..yemsg.sender.user_id)
+pppp = Redis:get(itsSnap.."zrffdcf"..yemsg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..yemsg.sender.user_id) or 0
 
 LuaTele.sendText(msg.chat_id,msg.id, "•* الاسم ↫ *"..news.."\n* ‹ : الحساب ↫ *"..cccc.."\n* ‹ : بنك ↫ ( *"..gg.."* )\n ‹ : نوع ↫ ( *"..uuuu.."* )\n ‹ : الرصيد ↫ ( *"..ballancee.."* دينار  💸 )\n ‹ : الزرف ( *"..pppp.."* دينار  💸 )\n-*","md",true)
 else
@@ -5479,63 +5476,63 @@ end
 end
 
 if text == "خلع" then
-if not Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") then
+if not Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الخلع للمتزوجات فقط \n","md",true)
 end
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."rgalll2:") 
-local mhrr = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."rgalll2:") 
+local mhrr = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(ballancee) < tonumber(mhrr) then
 return LuaTele.sendText(msg.chat_id,msg.id, "عشان تخلعينه لازم تجمعين "..mhrr.." دينار\n-","md",true)
 end
 local gg = LuaTele.getUser(zwga_id)
 alzog = " "..gg.first_name.." "
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:") 
-Redis:incrby(TheMekabo.."nool:flotysb"..zwga_id,mhrr)
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id,mhrr)
-Redis:del(TheMekabo.."mznom"..msg_chat_id..zwga_id)
-Redis:srem(TheMekabo.."almtzog"..msg_chat_id,zwga_id)
-Redis:del(TheMekabo.."mznom"..msg_chat_id..msg.sender.user_id)
-Redis:srem(TheMekabo.."almtzog"..msg_chat_id,msg.sender.user_id)
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."mhrrr2:")
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."bnttt2:")
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."rgalll2:")
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:") 
+Redis:incrby(itsSnap.."nool:flotysb"..zwga_id,mhrr)
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id,mhrr)
+Redis:del(itsSnap.."mznom"..msg_chat_id..zwga_id)
+Redis:srem(itsSnap.."almtzog"..msg_chat_id,zwga_id)
+Redis:del(itsSnap.."mznom"..msg_chat_id..msg.sender.user_id)
+Redis:srem(itsSnap.."almtzog"..msg_chat_id,msg.sender.user_id)
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."mhrrr2:")
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."bnttt2:")
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."rgalll2:")
 LuaTele.sendText(msg_chat_id,msg_id," ‹ : تم خلعت زوجك "..alzog.." \n ورجعت له "..mhrr.." دينار","md")
 end
 if text == "طلاق"  then
-if not Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") then
+if not Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الطلاق للمتزوجين فقط \n","md",true)
 end
-local zwga_id = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:") 
-local zoog2 = Redis:get(TheMekabo..msg_chat_id..zwga_id.."bnttt2:") 
-local mhrr = Redis:get(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+local zwga_id = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:") 
+local zoog2 = Redis:get(itsSnap..msg_chat_id..zwga_id.."bnttt2:") 
+local mhrr = Redis:get(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
 local gg = LuaTele.getUser(zwga_id)
 alzog = " "..gg.first_name.." "
 LuaTele.sendText(msg_chat_id,msg_id," ‹ : تم طلقتك من "..alzog.."","md")
-Redis:del(TheMekabo.."mznom"..msg_chat_id..zwga_id)
-Redis:srem(TheMekabo.."almtzog"..msg_chat_id,zwga_id)
-Redis:del(TheMekabo.."mznom"..msg_chat_id..msg.sender.user_id)
-Redis:srem(TheMekabo.."almtzog"..msg_chat_id,msg.sender.user_id)
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."mhrrr2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."mhrrr2:")
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."bnttt2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."bnttt2:")
-Redis:del(TheMekabo..msg_chat_id..msg.sender.user_id.."rgalll2:")
-Redis:del(TheMekabo..msg_chat_id..zwga_id.."rgalll2:") 
+Redis:del(itsSnap.."mznom"..msg_chat_id..zwga_id)
+Redis:srem(itsSnap.."almtzog"..msg_chat_id,zwga_id)
+Redis:del(itsSnap.."mznom"..msg_chat_id..msg.sender.user_id)
+Redis:srem(itsSnap.."almtzog"..msg_chat_id,msg.sender.user_id)
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."mhrrr2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."mhrrr2:")
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."bnttt2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."bnttt2:")
+Redis:del(itsSnap..msg_chat_id..msg.sender.user_id.."rgalll2:")
+Redis:del(itsSnap..msg_chat_id..zwga_id.."rgalll2:") 
 end
 if text == 'تصفير النتائج' or text == 'مسح لعبه البنك' then
 if not msg.DevelopersQ then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌔︙هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
 end
-local bank_users = Redis:smembers(TheMekabo.."ttpppi")
+local bank_users = Redis:smembers(itsSnap.."ttpppi")
 if #bank_users ~= 0 then
 mony_list = {}
 for k,v in pairs(bank_users) do
-local mony = Redis:get(TheMekabo.."nool:flotysb"..v) or 0
+local mony = Redis:get(itsSnap.."nool:flotysb"..v) or 0
 table.insert(mony_list, {tonumber(mony) , v})
 end table.sort(mony_list, function(a, b) return a[1] > b[1] end)
 num = 1
@@ -5548,31 +5545,31 @@ num = num + 1
 if emo == "🥇 )" then
 
 gflos = string.format("%.0f", v[1]):reverse():gsub( "(%d%d%d)" , "%1," ):reverse():gsub("^,","")
-Redis:set(TheMekabo.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
+Redis:set(itsSnap.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
 elseif emo == "🥈 )" then
 gflos = string.format("%.0f", v[1]):reverse():gsub( "(%d%d%d)" , "%1," ):reverse():gsub("^,","")
-Redis:set(TheMekabo.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
+Redis:set(itsSnap.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
 elseif emo == "🥉 )" then
 gflos = string.format("%.0f", v[1]):reverse():gsub( "(%d%d%d)" , "%1," ):reverse():gsub("^,","")
-Redis:set(TheMekabo.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
+Redis:set(itsSnap.."MyMdaleateamnay"..v[2],os.date("%Y/%m/%d")..' - ( '..emo..' - '..gflos)
 end;end;end;end
 
-local bank_users = Redis:smembers(TheMekabo.."noooybgy")
+local bank_users = Redis:smembers(itsSnap.."noooybgy")
 for k,v in pairs(bank_users) do
-Redis:del(TheMekabo.."nool:flotysb"..v)
-Redis:del(TheMekabo.."zrffdcf"..v)
-Redis:del(TheMekabo.."innoo"..v)
-Redis:del(TheMekabo.."nnooooo"..v)
-Redis:del(TheMekabo.."nnoooo"..v)
-Redis:del(TheMekabo.."nnooo"..v)
-Redis:del(TheMekabo.."nnoo"..v)
-Redis:del(TheMekabo.."polic"..v)
-Redis:del(TheMekabo.."ashmvm"..v)
-Redis:del(TheMekabo.."hrame"..v)
-Redis:del(TheMekabo.."test:mmtlkat6"..v)
-Redis:del(TheMekabo.."zahbmm2"..v)
+Redis:del(itsSnap.."nool:flotysb"..v)
+Redis:del(itsSnap.."zrffdcf"..v)
+Redis:del(itsSnap.."innoo"..v)
+Redis:del(itsSnap.."nnooooo"..v)
+Redis:del(itsSnap.."nnoooo"..v)
+Redis:del(itsSnap.."nnooo"..v)
+Redis:del(itsSnap.."nnoo"..v)
+Redis:del(itsSnap.."polic"..v)
+Redis:del(itsSnap.."ashmvm"..v)
+Redis:del(itsSnap.."hrame"..v)
+Redis:del(itsSnap.."test:mmtlkat6"..v)
+Redis:del(itsSnap.."zahbmm2"..v)
 end
-Redis:del(TheMekabo.."ttpppi")
+Redis:del(itsSnap.."ttpppi")
 
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مسحت لعبه البنك ","md",true)
 end
@@ -5582,11 +5579,11 @@ if text == 'تصفير الحراميه' then
 if not msg.DevelopersQ then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌔︙هذا الامر يخص { '..Controller_Num(2)..' }* ',"md",true)  
 end
-local bank_users = Redis:smembers(TheMekabo.."zrfffidtf")
+local bank_users = Redis:smembers(itsSnap.."zrfffidtf")
 for k,v in pairs(bank_users) do
-Redis:del(TheMekabo.."zrffdcf"..v)
+Redis:del(itsSnap.."zrffdcf"..v)
 end
-Redis:del(TheMekabo.."zrfffidtf")
+Redis:del(itsSnap.."zrfffidtf")
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مسحت الحراميه ","md",true)
 end
 
@@ -5597,10 +5594,10 @@ creditex = math.random(300,40000000000255);
 creditcc = math.random(400,80000000000255)
 
 balas = 0
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : لديك حساب بنكي مسبقاً\n\n ‹ : لعرض معلومات حسابك اكتب\n↤︎ حسابي","md",true)
 end
-Redis:setex(TheMekabo.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id,60, true)
+Redis:setex(itsSnap.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id,60, true)
 LuaTele.sendText(msg.chat_id,msg.id,[[
  ‹ : عشان تسوي حساب لازم تختار نوع البطاقة
 
@@ -5613,7 +5610,7 @@ LuaTele.sendText(msg.chat_id,msg.id,[[
 ]],"md",true)  
 return false
 end
-if Redis:get(TheMekabo.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) then
+if Redis:get(itsSnap.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) then
 if text == "بنك الرشيد" then
 local ban = LuaTele.getUser(msg.sender.user_id)
 if ban.first_name then
@@ -5622,19 +5619,19 @@ else
 news = " لا يوجد"
 end
 gg = "فيزا"
-flossst = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+flossst = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local banid = msg.sender.user_id
-Redis:set(TheMekabo.."noolb"..msg.sender.user_id,news)
-Redis:set(TheMekabo.."noolb"..msg.sender.user_id,creditcc)
-Redis:set(TheMekabo.."nnonb"..msg.sender.user_id,text)
-Redis:set(TheMekabo.."nnonbn"..msg.sender.user_id,gg)
-Redis:set(TheMekabo.."nonallname"..creditcc,news)
-Redis:set(TheMekabo.."nonallbalc"..creditcc,balas)
-Redis:set(TheMekabo.."nonallcc"..creditcc,creditcc)
-Redis:set(TheMekabo.."nonallban"..creditcc,text)
-Redis:set(TheMekabo.."nonallid"..creditcc,banid)
-Redis:sadd(TheMekabo.."noooybgy",msg.sender.user_id)
-Redis:del(TheMekabo.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:set(itsSnap.."noolb"..msg.sender.user_id,news)
+Redis:set(itsSnap.."noolb"..msg.sender.user_id,creditcc)
+Redis:set(itsSnap.."nnonb"..msg.sender.user_id,text)
+Redis:set(itsSnap.."nnonbn"..msg.sender.user_id,gg)
+Redis:set(itsSnap.."nonallname"..creditcc,news)
+Redis:set(itsSnap.."nonallbalc"..creditcc,balas)
+Redis:set(itsSnap.."nonallcc"..creditcc,creditcc)
+Redis:set(itsSnap.."nonallban"..creditcc,text)
+Redis:set(itsSnap.."nonallid"..creditcc,banid)
+Redis:sadd(itsSnap.."noooybgy",msg.sender.user_id)
+Redis:del(itsSnap.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 LuaTele.sendText(msg.chat_id,msg.id, "\n ‹ : وسوينا لك حساب في البنك ( بنك الرشيد 💳 )  \n\n ‹ : رقم حسابك ↫ ( "..creditcc.." )\n ‹ : نوع البطاقة ↫ ‹ "..gg.." ‹\n ‹ : فلوسك ↫ ‹ "..flossst.." دينار 💸 ‹  ","md",true)  
 end 
 if text == "بنك الرافدين" then
@@ -5645,20 +5642,20 @@ else
 news = " لا يوجد"
 end
 gg = "ماستر كارد"
-flossst = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+flossst = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local banid = msg.sender.user_id
-Redis:set(TheMekabo.."nonna"..msg.sender.user_id,news)
+Redis:set(itsSnap.."nonna"..msg.sender.user_id,news)
 
-Redis:set(TheMekabo.."noolb"..msg.sender.user_id,creditvi)
-Redis:set(TheMekabo.."nnonb"..msg.sender.user_id,text)
-Redis:set(TheMekabo.."nnonbn"..msg.sender.user_id,gg)
-Redis:set(TheMekabo.."nonallname"..creditvi,news)
-Redis:set(TheMekabo.."nonallbalc"..creditvi,balas)
-Redis:set(TheMekabo.."nonallcc"..creditvi,creditvi)
-Redis:set(TheMekabo.."nonallban"..creditvi,text)
-Redis:set(TheMekabo.."nonallid"..creditvi,banid)
-Redis:sadd(TheMekabo.."noooybgy",msg.sender.user_id)
-Redis:del(TheMekabo.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:set(itsSnap.."noolb"..msg.sender.user_id,creditvi)
+Redis:set(itsSnap.."nnonb"..msg.sender.user_id,text)
+Redis:set(itsSnap.."nnonbn"..msg.sender.user_id,gg)
+Redis:set(itsSnap.."nonallname"..creditvi,news)
+Redis:set(itsSnap.."nonallbalc"..creditvi,balas)
+Redis:set(itsSnap.."nonallcc"..creditvi,creditvi)
+Redis:set(itsSnap.."nonallban"..creditvi,text)
+Redis:set(itsSnap.."nonallid"..creditvi,banid)
+Redis:sadd(itsSnap.."noooybgy",msg.sender.user_id)
+Redis:del(itsSnap.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 LuaTele.sendText(msg.chat_id,msg.id, "\n ‹ : وسوينا لك حساب في البنك ( بنك الرافدين 💳 ) \n\n ‹ : رقم حسابك ↫ ( "..creditvi.." )\n ‹ : نوع البطاقة ↫ ‹ "..gg.." ‹\n ‹ : فلوسك ↫  ‹ ‹ "..flossst.." ‹ دينار 💸 ‹  ","md",true)  
 end 
 if text == "بنك دولي" then
@@ -5669,28 +5666,28 @@ else
 news = " لا يوجد"
 end
 gg = "مدى"
-flossst = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+flossst = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local banid = msg.sender.user_id
-Redis:set(TheMekabo.."nonna"..msg.sender.user_id,news)
-Redis:set(TheMekabo.."noolb"..msg.sender.user_id,creditex)
-Redis:set(TheMekabo.."nnonb"..msg.sender.user_id,text)
-Redis:set(TheMekabo.."nnonbn"..msg.sender.user_id,gg)
-Redis:set(TheMekabo.."nonallname"..creditex,news)
-Redis:set(TheMekabo.."nonallbalc"..creditex,balas)
-Redis:set(TheMekabo.."nonallcc"..creditex,creditex)
-Redis:set(TheMekabo.."nonallban"..creditex,text)
-Redis:set(TheMekabo.."nonallid"..creditex,banid)
-Redis:sadd(TheMekabo.."noooybgy",msg.sender.user_id)
-Redis:del(TheMekabo.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:set(itsSnap.."nonna"..msg.sender.user_id,news)
+Redis:set(itsSnap.."noolb"..msg.sender.user_id,creditex)
+Redis:set(itsSnap.."nnonb"..msg.sender.user_id,text)
+Redis:set(itsSnap.."nnonbn"..msg.sender.user_id,gg)
+Redis:set(itsSnap.."nonallname"..creditex,news)
+Redis:set(itsSnap.."nonallbalc"..creditex,balas)
+Redis:set(itsSnap.."nonallcc"..creditex,creditex)
+Redis:set(itsSnap.."nonallban"..creditex,text)
+Redis:set(itsSnap.."nonallid"..creditex,banid)
+Redis:sadd(itsSnap.."noooybgy",msg.sender.user_id)
+Redis:del(itsSnap.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 LuaTele.sendText(msg.chat_id,msg.id, "\n ‹ : سويت لك حساب في البنك ( بنك دولي 💳 ) \n\n ‹ : رقم حسابك ↫ ( "..creditex.." )\n ‹ : نوع البطاقة ↫ ‹ "..gg.." ‹\n↫فلوسك  ‹ :  ‹ ‹ "..flossst.." ‹ دينار  🪙 ) ","md",true)  
 end 
 end
 if text == 'مسح حساب بنكي' or text == 'مسح حسابي' or text == 'حذف حسابي' or text == 'مسح حساب البنكي' or text =='مسح الحساب بنكي' or text =='مسح الحساب البنكي' or text == "مسح حسابي البنكي" or text == "مسح حسابي بنكي" then
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-Redis:srem(TheMekabo.."noooybgy", msg.sender.user_id)
-Redis:del(TheMekabo.."noolb"..msg.sender.user_id)
-Redis:del(TheMekabo.."zrffdcf"..msg.sender.user_id)
-Redis:srem(TheMekabo.."zrfffidtf", msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+Redis:srem(itsSnap.."noooybgy", msg.sender.user_id)
+Redis:del(itsSnap.."noolb"..msg.sender.user_id)
+Redis:del(itsSnap.."zrffdcf"..msg.sender.user_id)
+Redis:srem(itsSnap.."zrfffidtf", msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مسحت حسابك البنكي ","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
@@ -5700,7 +5697,7 @@ end
 
 
 if text == 'فلوسي' or text == 'فلوس' and tonumber(msg.reply_to_message_id) == 0 then
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(ballancee) < 1 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك فلوس ارسل انشاء حساب بنكي واجمع الفلوس \n-","md",true)
 end
@@ -5713,7 +5710,7 @@ if UserInfo and UserInfo.type and UserInfo.type.Merotele == "userTypeBot" then
 LuaTele.sendText(msg.chat_id,msg.id,"\nيا غبي ذا بوتتتت","md",true)  
 return false
 end
-ballanceed = Redis:get(TheMekabo.."nool:flotysb"..Remsg.sender.user_id) or 0
+ballanceed = Redis:get(itsSnap.."nool:flotysb"..Remsg.sender.user_id) or 0
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسه *"..ballanceed.." دينار* 💸","md",true)
 end
 if text == 'حسابه' and tonumber(msg.reply_to_message_id) ~= 0 then
@@ -5724,13 +5721,13 @@ news = "["..ban.first_name.."]("..ban.first_name..")"
 else
 news = " لا يوجد"
 end
-if Redis:sismember(TheMekabo.."noooybgy",Remsg.sender.user_id) then
-cccc = Redis:get(TheMekabo.."noolb"..Remsg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",Remsg.sender.user_id) then
+cccc = Redis:get(itsSnap.."noolb"..Remsg.sender.user_id)
 
-gg = Redis:get(TheMekabo.."nnonb"..Remsg.sender.user_id)
-uuuu = Redis:get(TheMekabo.."nnonbn"..Remsg.sender.user_id)
-pppp = Redis:get(TheMekabo.."zrffdcf"..Remsg.sender.user_id) or 0
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..Remsg.sender.user_id) or 0
+gg = Redis:get(itsSnap.."nnonb"..Remsg.sender.user_id)
+uuuu = Redis:get(itsSnap.."nnonbn"..Remsg.sender.user_id)
+pppp = Redis:get(itsSnap.."zrffdcf"..Remsg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..Remsg.sender.user_id) or 0
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الاسم ↫ "..news.."\n ‹ : الحساب ↫ "..cccc.."\n ‹ : بنك ↫ ‹ "..gg.." ‹\n ‹ : نوع ↫ ( "..uuuu.." )\n ‹ : الرصيد ↫ ( "..ballancee.." دينار 💸 )\n ‹ : السرقه ( "..pppp.." دينار 💸 )\n-","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
@@ -5743,20 +5740,20 @@ news = "["..ban.first_name.."]("..ban.first_name..")"
 else
 news = " لا يوجد"
 end
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-cccc = Redis:get(TheMekabo.."noolb"..msg.sender.user_id)
-gg = Redis:get(TheMekabo.."nnonb"..msg.sender.user_id)
-uuuu = Redis:get(TheMekabo.."nnonbn"..msg.sender.user_id)
-pppp = Redis:get(TheMekabo.."zrffdcf"..msg.sender.user_id) or 0
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+cccc = Redis:get(itsSnap.."noolb"..msg.sender.user_id)
+gg = Redis:get(itsSnap.."nnonb"..msg.sender.user_id)
+uuuu = Redis:get(itsSnap.."nnonbn"..msg.sender.user_id)
+pppp = Redis:get(itsSnap.."zrffdcf"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الاسم ↫ "..news.."\n ‹ : الحساب ↫ "..cccc.."\n ‹ : بنك ↫ ‹ "..gg.." ‹\n ‹ : نوع ↫ ( "..uuuu.." )\n ‹ : الرصيد ↫ ( "..ballancee.." دينار 💸 )\n ‹ : السرقه ( "..pppp.." دينار 💸 )\n-","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
 end
 end
 if text == 'مضاربه' then
-if Redis:get(TheMekabo.."nnooooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnooooo" .. msg.sender.user_id)
+if Redis:get(itsSnap.."nnooooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnooooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تضارب الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
@@ -5776,13 +5773,13 @@ local coniss = coniss:gsub('٧','7')
 local coniss = coniss:gsub('٨','8')
 local coniss = coniss:gsub('٩','9')
 local coniss = tonumber(coniss)
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-if Redis:get(TheMekabo.."nnooooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnooooo" .. msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+if Redis:get(itsSnap.."nnooooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnooooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تضارب الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(coniss) < 199 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الحد الادنى المسموح هو 200 دينار 💸\n-","md",true)
 end
@@ -5795,15 +5792,15 @@ local modarbaa = math.random(1,90);
 if Descriptioontt == "1" or Descriptioontt == "3" then
 ballanceekku = math.floor(coniss / 100 * modarbaa)
 ballanceekkku = math.floor(ballancee - ballanceekku)
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , ballanceekku)
-Redis:setex(TheMekabo.."nnooooo" .. msg.sender.user_id,1200, true)
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id , ballanceekku)
+Redis:setex(itsSnap.."nnooooo" .. msg.sender.user_id,1200, true)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مضاربة فاشلة \n ‹ : نسبة الخسارة ↫ "..modarbaa.."%\n ‹ : المبلغ الذي خسرته ↫ ( "..ballanceekku.." دينار 💸 )\n ‹ : فلوسك ↫ صارت  ( "..ballanceekkku.." دينار 💸 )\n-","md",true)
 elseif Descriptioontt == "2" or Descriptioontt == "4" then
 ballanceekku = math.floor(coniss / 100 * modarbaa)
 
 ballanceekkku = math.floor(ballancee + ballanceekku)
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekku))
-Redis:setex(TheMekabo.."nnooooo" .. msg.sender.user_id,1200, true)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekku))
+Redis:setex(itsSnap.."nnooooo" .. msg.sender.user_id,1200, true)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مضاربة ناجحة \n ‹ : نسبة الربح ↫ "..modarbaa.."%\n ‹ : المبلغ الذي ربحته ↫ ( "..ballanceekku.." دينار 💸 )\n ‹ : فلوسك ↫ صارت  ( "..ballanceekkku.." دينار ?? )\n-","md",true)
 end
 else
@@ -5811,8 +5808,8 @@ LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ار
 end
 end
 if text == 'استثمار' then
-if Redis:get(TheMekabo.."nnoooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnoooo" .. msg.sender.user_id)
+if Redis:get(itsSnap.."nnoooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnoooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تستثمر الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
@@ -5832,45 +5829,59 @@ local coniss = coniss:gsub('٧','7')
 local coniss = coniss:gsub('٨','8')
 local coniss = coniss:gsub('٩','9')
 local coniss = tonumber(coniss)
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-if Redis:get(TheMekabo.."nnoooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnoooo" .. msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+if Redis:get(itsSnap.."nnoooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnoooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تستثمر الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(coniss) < 199 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الحد الادنى المسموح هو 200 دينار 💸\n-","md",true)
 end
 if tonumber(ballancee) < tonumber(coniss) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسك ↫ ماتكفي \n-","md",true)
 end
-if Redis:get(TheMekabo.."xxxr" .. msg.sender.user_id) then
+if Redis:get(itsSnap.."xxxr" .. msg.sender.user_id) then
 ballanceekk = math.floor(coniss / 100 * 10)
 ballanceekkk = math.floor(ballancee + ballanceekk)
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
-Redis:setex(TheMekabo.."nnoooo" .. msg.sender.user_id,1200, true)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
+Redis:setex(itsSnap.."nnoooo" .. msg.sender.user_id,1200, true)
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : استثمار ناجح 2x\n ‹ : نسبة الربح ↢ 10%\n ‹ : مبلغ الربح ↢ ( "..ballanceekk.." دينار  🪙 )\n ‹ : فلوسك صارت ↢ ( "..ballanceekkk.." دينار  🪙 )\n-","md",true)
 end
 local hadddd = math.random(0,25);
 ballanceekk = math.floor(coniss / 100 * hadddd)
 ballanceekkk = math.floor(ballancee + ballanceekk)
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
-Redis:setex(TheMekabo.."nnoooo" .. msg.sender.user_id,1200, true)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
+Redis:setex(itsSnap.."nnoooo" .. msg.sender.user_id,1200, true)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : استثمار ناجح \n ‹ : نسبة الربح ↢ "..hadddd.."%\n ‹ : مبلغ الربح ↢ ( "..ballanceekk.." دينار  🪙 )\n ‹ : فلوسك صارت ↢ ( "..ballanceekkk.." دينار  🪙 )\n-","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
 end
 end
 if text == 'تصفير فلوسي' then
-Redis:del(TheMekabo.."nool:flotysb"..msg.sender.user_id)
+Redis:del(itsSnap.."nool:flotysb"..msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, "تم تصفير فلوسك","md",true)
 end
+if text == "البنك" or text == "بنك" or text == "بنكي" then
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
+data = {
+{
+},
+{
+{text = 'إخفاء الأمر', data = msg.sender.user_id..'/delAmr'},
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,'- اوامر البنك :\n\n ‹ : انشاء حساب بنكي  ↫ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n ‹ : مسح حساب بنكي  ↫ تلغي حسابك البنكي\n\n ‹ : تحويل ↫ تطلب رقم حساب الشخص وتحول له فلوس\n\n ‹ : حسابي  ↫ يطلع لك رقم حسابك عشان تطيه للشخص اللي بيحول لك\n\n ‹ : فلوسي ↫ يعلمك كم فلوسك\n\n ‹ : راتب ↫ يعطيك راتب كل ١٠ دقائق\n\n ‹ : بخشيش ↫ يعطيك بخشيش كل ١٠ دقايق\n\n ‹ : زرف ↫ تزرف فلوس اشخاص كل ١٠ دقايق\n\n ‹ : استثمار ↫ تستثمر بالمبلغ اللي تريده مع نسبة ربح مضمونه من ١٪؜ الى
 
+١٥٪؜\n\n ‹ : حظ ↫ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n ‹ : مضاربه ↫ تضارب بأي مبلغ تريده والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n ‹ : توب الفلوس ↫ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n ‹ : توب الحراميه ↫ يطلع لك اكثر ناس زرفوا\n\n ‹ : زواج  ↫ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n ‹ : طلاق ↫ يطلقك اذا متزوج\n\n ‹ : خلع  ↫ يخلع زوجك ويرجع له المهر\n\n ‹ : زواجات',"md",false, false, false, false, reply_markup)
+end
 if text == 'حظ' then
-if Redis:get(TheMekabo.."nnooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnooo" .. msg.sender.user_id)
+if Redis:get(itsSnap.."nnooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تلعب لعبة الحظ الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
@@ -5878,13 +5889,13 @@ LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\nحظ �
 end
 if text and text:match('^حظ (%d+)$') then
 local coniss = text:match('^حظ (%d+)$')
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-if Redis:get(TheMekabo.."nnooo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnooo" .. msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+if Redis:get(itsSnap.."nnooo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnooo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ماتكدر تلعب لعبة الحظ الان\n ‹ : تعال بعد "..rr.." دقيقة") 
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(ballancee) < tonumber(coniss) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسك ↫ ماتكفي \n-","md",true)
 end
@@ -5893,14 +5904,14 @@ local haddd = daddd[math.random(#daddd)]
 if haddd == 1 or haddd == 2 or haddd == 3 then
 local ballanceek = math.floor(coniss + coniss)
 
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceek))
-Redis:setex(TheMekabo.."nnooo" .. msg.sender.user_id,1200, true)
-ff = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceek))
+Redis:setex(itsSnap.."nnooo" .. msg.sender.user_id,1200, true)
+ff = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : مبروك فزت بالحظ \n ‹ : فلوسك ↫ قبل ↫ ( "..ballancee.." دينار 💸 )\n ‹ : الربح ↫ ( "..ballanceek.." دينار 💸 )\n ‹ : فلوسك الان ↫ ( "..ff.." دينار 💸 )\n-","md",true)
 elseif haddd == 5 or haddd == 6 then
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , coniss)
-Redis:setex(TheMekabo.."nnooo" .. msg.sender.user_id,1200, true)
-ff = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id , coniss)
+Redis:setex(itsSnap.."nnooo" .. msg.sender.user_id,1200, true)
+ff = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : للاسف خسرت بالحظ \n ‹ : فلوسك ↫ قبل ↫ ( "..ballancee.." دينار 💸 )\n ‹ : الخساره ↫ ( "..coniss.." دينار 💸 )\n ‹ : فلوسك ↫ الان ↫ ( "..ff.." دينار 💸 )\n-","md",true)
 end
 else
@@ -5927,13 +5938,13 @@ local coniss = coniss:gsub('٧','7')
 local coniss = coniss:gsub('٨','8')
 local coniss = coniss:gsub('٩','9')
 local coniss = tonumber(coniss)
-if not Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
+if not Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ","md",true)
 end
 if tonumber(coniss) < 100 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : الحد الادنى المسموح به هو 100 دينار \n-","md",true)
 end
-ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(ballancee) < 100 then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسك ماتكفي \n-","md",true)
 end
@@ -5942,8 +5953,8 @@ if tonumber(coniss) > tonumber(ballancee) then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسك ماتكفي\n-","md",true)
 end
 
-Redis:set(TheMekabo.."transn"..msg.sender.user_id,coniss)
-Redis:setex(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id,60, true)
+Redis:set(itsSnap.."transn"..msg.sender.user_id,coniss)
+Redis:setex(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id,60, true)
 LuaTele.sendText(msg.chat_id,msg.id,[[
  ‹ : ارسل الان رقم الحساب البنكي الي تريد تحوله √
 
@@ -5951,32 +5962,32 @@ LuaTele.sendText(msg.chat_id,msg.id,[[
 ]],"md",true)  
 return false
 end
-if Redis:get(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) then
-cccc = Redis:get(TheMekabo.."noolb"..msg.sender.user_id)
-gg = Redis:get(TheMekabo.."nnonb"..msg.sender.user_id)
-uuuu = Redis:get(TheMekabo.."nnonbn"..msg.sender.user_id)
+if Redis:get(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) then
+cccc = Redis:get(itsSnap.."noolb"..msg.sender.user_id)
+gg = Redis:get(itsSnap.."nnonb"..msg.sender.user_id)
+uuuu = Redis:get(itsSnap.."nnonbn"..msg.sender.user_id)
 if text ~= text:match('^(%d+)$') then
-Redis:del(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-Redis:del(TheMekabo.."transn" .. msg.sender.user_id)
+Redis:del(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:del(itsSnap.."transn" .. msg.sender.user_id)
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : ارسل رقم حساب بنكي ","md",true)
 end
 if text == cccc then
-Redis:del(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-Redis:del(TheMekabo.."transn" .. msg.sender.user_id)
+Redis:del(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:del(itsSnap.."transn" .. msg.sender.user_id)
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : ماتكدر تحول لنفسك √","md",true)
 end
-if Redis:get(TheMekabo.."nonallcc"..text) then
-local UserNamey = Redis:get(TheMekabo.."transn"..msg.sender.user_id)
+if Redis:get(itsSnap.."nonallcc"..text) then
+local UserNamey = Redis:get(itsSnap.."transn"..msg.sender.user_id)
 local ban = LuaTele.getUser(msg.sender.user_id)
 if ban.first_name then
 news = "["..ban.first_name.."](tg://user?id="..ban.id..")"
 else
 news = " لا يوجد "
 end
-local fsvhhh = Redis:get(TheMekabo.."nonallid"..text)
+local fsvhhh = Redis:get(itsSnap.."nonallid"..text)
 local bann = LuaTele.getUser(fsvhhh)
-hsabe = Redis:get(TheMekabo.."nnonb"..fsvhhh)
-nouu = Redis:get(TheMekabo.."nnonbn"..fsvhhh)
+hsabe = Redis:get(itsSnap.."nnonb"..fsvhhh)
+nouu = Redis:get(itsSnap.."nnonbn"..fsvhhh)
 if bann.first_name then
 newss = "["..bann.first_name.."](tg://user?id="..bann.id..")"
 else
@@ -5987,48 +5998,48 @@ if gg == hsabe then
 nsba = "خصمت 5% لبنك "..hsabe..""
 UserNameyr = math.floor(UserNamey / 100 * 5)
 UserNameyy = math.floor(UserNamey - UserNameyr)
-Redis:incrby(TheMekabo.."nool:flotysb"..fsvhhh ,UserNameyy)
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id ,UserNamey)
+Redis:incrby(itsSnap.."nool:flotysb"..fsvhhh ,UserNameyy)
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id ,UserNamey)
 LuaTele.sendText(msg.chat_id,msg.id, "حوالة صادرة من البنك ↫ ‹ "..gg.." ‹\n\nالمرسل : "..news.."\nالحساب رقم : "..cccc.."\nنوع البطاقة : "..uuuu.."\nالمستلم : "..newss.."\nالحساب رقم : "..text.."\nالبنك : "..hsabe.."\nنوع البطاقة : "..nouu.."\n"..nsba.."\nالمبلغ ↫ "..UserNameyy.." دينار 💸","md",true)
 LuaTele.sendText(fsvhhh,0, "حوالة واردة من البنك ↫ ‹ "..gg.." ‹\n\nالمرسل : "..news.."\nالحساب رقم : "..cccc.."\nنوع البطاقة : "..uuuu.."\nالمبلغ ↫ "..UserNameyy.." دينار 💸","md",true)
-Redis:del(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-Redis:del(TheMekabo.."transn" .. msg.sender.user_id)
+Redis:del(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:del(itsSnap.."transn" .. msg.sender.user_id)
 elseif gg ~= hsabe then
 nsba = "خصمت 10% من بنك لبنك"
 UserNameyr = math.floor(UserNamey / 100 * 10)
 UserNameyy = math.floor(UserNamey - UserNameyr)
-Redis:incrby(TheMekabo.."nool:flotysb"..fsvhhh ,UserNameyy)
-Redis:decrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , UserNamey)
+Redis:incrby(itsSnap.."nool:flotysb"..fsvhhh ,UserNameyy)
+Redis:decrby(itsSnap.."nool:flotysb"..msg.sender.user_id , UserNamey)
 LuaTele.sendText(msg.chat_id,msg.id, "حوالة صادرة من البنك ↫ ‹ "..gg.." ‹\n\nالمرسل : "..news.."\nالحساب رقم : "..cccc.."\nنوع البطاقة : "..uuuu.."\nالمستلم : "..newss.."\nالحساب رقم : "..text.."\nالبنك : "..hsabe.."\nنوع البطاقة : "..nouu.."\n"..nsba.."\nالمبلغ ↫ "..UserNameyy.." دينار 💸","md",true)
 LuaTele.sendText(fsvhhh,0, "حوالة واردة من البنك ↫ ‹ "..gg.." ‹\n\nالمرسل : "..news.."\nالحساب رقم : "..cccc.."\nنوع البطاقة : "..uuuu.."\nالمبلغ ↫ "..UserNameyy.." دينار 💸","md",true)
-Redis:del(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-Redis:del(TheMekabo.."transn" .. msg.sender.user_id)
+Redis:del(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:del(itsSnap.."transn" .. msg.sender.user_id)
 end
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : حبيبي ماكو هيج حساب √","md",true)
-Redis:del(TheMekabo.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-Redis:del(TheMekabo.."transn" .. msg.sender.user_id)
+Redis:del(itsSnap.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
+Redis:del(itsSnap.."transn" .. msg.sender.user_id)
 end
 end
 
 if text == 'اكراميه' or text == 'بخشيش' then
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-if Redis:get(TheMekabo.."nnoo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."nnoo" .. msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+if Redis:get(itsSnap.."nnoo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."nnoo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : حبيبي لتلح قبل شوي نطيتك انتظر ↫ "..rr.." دقيقة") 
 end
-if Redis:get(TheMekabo.."xxxr" .. msg.sender.user_id) then
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , 3000)
+if Redis:get(itsSnap.."xxxr" .. msg.sender.user_id) then
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , 3000)
 
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
 return LuaTele.sendText(msg.chat_id,msg.id," ‹ : خذ بخشيش المحظوظين 3000 دينار 💸","md",true)
 end
 local jjjo = math.random(1,2000);
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , jjjo)
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , jjjo)
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id," ‹ : اجالك بخشيش بقيمه ↫ "..jjjo.." دينار 💸","md",true)
-Redis:setex(TheMekabo.."nnoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."nnoo" .. msg.sender.user_id,600, true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
 end
@@ -6044,8 +6055,8 @@ local UserInfo = LuaTele.getUser(UserId_Info.id)
 if UserInfo and UserInfo.type and UserInfo.type.Merotele == "userTypeBot" then
 return LuaTele.sendText(msg_chat_id,msg_id,"\n ‹ : يا غبي ذا بوتتتت ","md",true)  
 end
-if Redis:sismember(TheMekabo.."noooybgy",UserId_Info.id) then
-ballanceed = Redis:get(TheMekabo.."nool:flotysb"..UserId_Info.id) or 0
+if Redis:sismember(itsSnap.."noooybgy",UserId_Info.id) then
+ballanceed = Redis:get(itsSnap.."nool:flotysb"..UserId_Info.id) or 0
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : فلوسه "..ballanceed.." دينار 💸","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعنده حساب بنكي ","md",true)
@@ -6053,8 +6064,8 @@ end
 end
 
 if text == 'زرف' and tonumber(msg.reply_to_message_id) == 0 then
-if Redis:get(TheMekabo.."polic" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."polic" .. msg.sender.user_id)
+if Redis:get(itsSnap.."polic" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."polic" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ي ظالم توك سارق \n ‹ : تعال بعد "..rr.." دقيقة") 
 end 
@@ -6073,18 +6084,18 @@ if Remsg.sender.user_id == msg.sender.user_id then
 LuaTele.sendText(msg.chat_id,msg.id,"\nيا غبي تبي تسرقه نفسك ؟!","md",true)  
 return false
 end
-if Redis:get(TheMekabo.."polic" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."polic" .. msg.sender.user_id)
+if Redis:get(itsSnap.."polic" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."polic" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ي ظالم توك سارق \n ‹ : تعال بعد "..rr.." دقيقة") 
 end 
-if Redis:get(TheMekabo.."hrame" .. Remsg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."hrame" .. Remsg.sender.user_id)
+if Redis:get(itsSnap.."hrame" .. Remsg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."hrame" .. Remsg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : سارقينه قبلك \n ‹ : يمديك تسرقهه بعد "..rr.." دقيقة") 
 end 
-if Redis:sismember(TheMekabo.."noooybgy",Remsg.sender.user_id) then
-ballanceed = Redis:get(TheMekabo.."nool:flotysb"..Remsg.sender.user_id) or 0
+if Redis:sismember(itsSnap.."noooybgy",Remsg.sender.user_id) then
+ballanceed = Redis:get(itsSnap.."nool:flotysb"..Remsg.sender.user_id) or 0
 if tonumber(ballanceed) < 2000  then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماتكدر تسرقهه فلوسه اقل من 2000  دينار ??","md",true)
 end
@@ -6095,14 +6106,14 @@ else
 newss = " لا يوجد "
 end
 local hrame = math.random(2000);
-local ballanceed = Redis:get(TheMekabo.."nool:flotysb"..Remsg.sender.user_id) or 0
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , hrame)
-Redis:decrby(TheMekabo.."nool:flotysb"..Remsg.sender.user_id , hrame)
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
-Redis:setex(TheMekabo.."hrame" .. Remsg.sender.user_id,900, true)
-Redis:incrby(TheMekabo.."zrffdcf"..msg.sender.user_id,hrame)
-Redis:sadd(TheMekabo.."zrfffidtf",msg.sender.user_id)
-Redis:setex(TheMekabo.."polic" .. msg.sender.user_id,300, true)
+local ballanceed = Redis:get(itsSnap.."nool:flotysb"..Remsg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , hrame)
+Redis:decrby(itsSnap.."nool:flotysb"..Remsg.sender.user_id , hrame)
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
+Redis:setex(itsSnap.."hrame" .. Remsg.sender.user_id,900, true)
+Redis:incrby(itsSnap.."zrffdcf"..msg.sender.user_id,hrame)
+Redis:sadd(itsSnap.."zrfffidtf",msg.sender.user_id)
+Redis:setex(itsSnap.."polic" .. msg.sender.user_id,300, true)
 
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : اخذ يالحرامي زرفته  "..hrame.." دينار 💸\n","md",true)
 local Get_Chat = LuaTele.getChat(msg_chat_id)
@@ -6137,18 +6148,18 @@ if UserId_Info.id == msg.sender.user_id then
 LuaTele.sendText(msg.chat_id,msg.id,"\nيا غبي تبي تسرقه نفسك ؟!","md",true)  
 return false
 end
-if Redis:get(TheMekabo.."polic" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."polic" .. msg.sender.user_id)
+if Redis:get(itsSnap.."polic" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."polic" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : ي ظالم توك سارق \n ‹ : تعال بعد "..rr.." دقيقة") 
 end 
-if Redis:get(TheMekabo.."hrame" .. UserId_Info.id) then  
-local check_time = Redis:ttl(TheMekabo.."hrame" .. UserId_Info.id)
+if Redis:get(itsSnap.."hrame" .. UserId_Info.id) then  
+local check_time = Redis:ttl(itsSnap.."hrame" .. UserId_Info.id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : سارقينه قبلك \n ‹ : يمديك تسرقهه بعد "..rr.." دقيقة") 
 end 
-if Redis:sismember(TheMekabo.."noooybgy",UserId_Info.id) then
-ballanceed = Redis:get(TheMekabo.."nool:flotysb"..UserId_Info.id) or 0
+if Redis:sismember(itsSnap.."noooybgy",UserId_Info.id) then
+ballanceed = Redis:get(itsSnap.."nool:flotysb"..UserId_Info.id) or 0
 if tonumber(ballanceed) < 2000  then
 return LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماتكدر تسرقهه فلوسه اقل من 2000  دينار 💸","md",true)
 end
@@ -6159,14 +6170,14 @@ else
 newss = " لا يوجد "
 end
 local hrame = math.random(2000);
-local ballanceed = Redis:get(TheMekabo.."nool:flotysb"..UserId_Info.id) or 0
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , hrame)
-Redis:decrby(TheMekabo.."nool:flotysb"..UserId_Info.id , hrame)
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
-Redis:setex(TheMekabo.."hrame" .. UserId_Info.id,900, true)
-Redis:incrby(TheMekabo.."zrffdcf"..msg.sender.user_id,hrame)
-Redis:sadd(TheMekabo.."zrfffidtf",msg.sender.user_id)
-Redis:setex(TheMekabo.."polic" .. msg.sender.user_id,300, true)
+local ballanceed = Redis:get(itsSnap.."nool:flotysb"..UserId_Info.id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , hrame)
+Redis:decrby(itsSnap.."nool:flotysb"..UserId_Info.id , hrame)
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
+Redis:setex(itsSnap.."hrame" .. UserId_Info.id,900, true)
+Redis:incrby(itsSnap.."zrffdcf"..msg.sender.user_id,hrame)
+Redis:sadd(itsSnap.."zrfffidtf",msg.sender.user_id)
+Redis:setex(itsSnap.."polic" .. msg.sender.user_id,300, true)
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : اخذ يالحرامي زرفته  "..hrame.." دينار 💸\n","md",true)
 local Get_Chat = LuaTele.getChat(msg_chat_id)
 local NameGroup = Get_Chat.title
@@ -6187,13 +6198,13 @@ end
 end
 
 if text == 'راتب' or text == 'راتبي' then
-if Redis:sismember(TheMekabo.."noooybgy",msg.sender.user_id) then
-if Redis:get(TheMekabo.."innoo" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(TheMekabo.."innoo" .. msg.sender.user_id)
+if Redis:sismember(itsSnap.."noooybgy",msg.sender.user_id) then
+if Redis:get(itsSnap.."innoo" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(itsSnap.."innoo" .. msg.sender.user_id)
 rr = os.date("%M:%S",tonumber(check_time))
 return LuaTele.sendText(msg.chat_id, msg.id," ‹ : راتبك بينزل بعد "..rr.." دقيقة") 
 end 
-if Redis:get(TheMekabo.."xxxr" .. msg.sender.user_id) then
+if Redis:get(itsSnap.."xxxr" .. msg.sender.user_id) then
 local ban = LuaTele.getUser(msg.sender.user_id)
 if ban.first_name then
 neews = "["..ban.first_name.."](tg://user?id="..ban.id..")"
@@ -6202,13 +6213,13 @@ neews = " لا يوجد "
 end
 K = 'محظوظ 2x' 
 F = '15000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = 
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 return LuaTele.sendText(msg.chat_id, msg.id,"اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸","md",true) 
 end 
-Redis:sadd(TheMekabo.."ttpppi",msg.sender.user_id)
+Redis:sadd(itsSnap.."ttpppi",msg.sender.user_id)
 local Textinggt = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
 local sender = Textinggt[math.random(#Textinggt)]
 local ban = LuaTele.getUser(msg.sender.user_id)
@@ -6220,206 +6231,206 @@ end
 if sender == 1 then
 K = 'مهندس 👨🏻‍🏭' 
 F = '3000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 2 then
     K = ' ممرض 🧑🏻‍⚕' 
     F = '2500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 3 then
     K = ' معلم 👨🏻‍🏫' 
     F = '3800'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 4 then
     K = ' سواق 🧍🏻‍♂' 
     F = '1200'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 5 then
     K = ' دكتور 👨🏻‍⚕️' 
     F = '4500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 6 then
     K = ' محامي ⚖️' 
     F = '6500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
 
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار ??\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 7 then
     K = ' حداد 🧑🏻‍🏭' 
     F = '1500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 8 then
     K = 'طيار 👨🏻‍✈️' 
     F = '5000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 9 then
     K = 'حارس أمن 👮🏻' 
     F = '3500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 10 then
     K = 'حلاق 💇🏻‍♂' 
     F = '1400'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 11 then
     K = 'محقق 🕵🏼‍♂' 
     F = '5000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 12 then
     K = 'ضابط 👮🏻‍♂' 
     F = '7500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 13 then
     K = 'عسكري 👮🏻' 
     F = '6500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 14 then
     K = 'عاطل 🙇🏻' 
     F = '1000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 15 then
     K = 'رسام 👨🏻‍🎨' 
     F = '1600'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 16 then
     K = 'ممثل 🦹🏻' 
     F = '5400'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 17 then
     K = 'مهرج 🤹🏻‍♂' 
     F = '2000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 18 then
     K = 'قاضي 👨🏻‍⚖' 
     F = '8000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 19 then
     K = 'مغني 🎤' 
     F = '3400'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 20 then
     K = 'مدرب 🏃🏻‍♂' 
     F = '2500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 21 then
     K = 'بحار 🛳' 
     F = '3500'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 22 then
     K = 'مبرمج 👨🏼‍💻' 
     F = '3200'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 23 then
     K = 'لاعب ⚽️' 
     F = '4700'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 24 then
     K = 'كاشير 🧑🏻‍💻' 
     F = '3000'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 elseif sender == 25 then
     K = 'مزارع 👨🏻‍🌾' 
     F = '2300'
-Redis:incrby(TheMekabo.."nool:flotysb"..msg.sender.user_id , F)
-local ballancee = Redis:get(TheMekabo.."nool:flotysb"..msg.sender.user_id) or 0
+Redis:incrby(itsSnap.."nool:flotysb"..msg.sender.user_id , F)
+local ballancee = Redis:get(itsSnap.."nool:flotysb"..msg.sender.user_id) or 0
 local teex = "اشعار ايداع "..neews.."\nالمبلغ ↫ "..F.." دينار 💸\nوظيفتك : "..K.."\nنوع العمليه ↫ اضافة راتب\nرصيدك الان : "..ballancee.." دينار 💸"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
-Redis:setex(TheMekabo.."innoo" .. msg.sender.user_id,600, true)
+Redis:setex(itsSnap.."innoo" .. msg.sender.user_id,600, true)
 end
 else
 LuaTele.sendText(msg.chat_id,msg.id, " ‹ : ماعندك حساب بنكي ارسل ↫ ( انشاء حساب بنكي )","md",true)
