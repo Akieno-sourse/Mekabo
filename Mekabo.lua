@@ -5168,6 +5168,20 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/MoviesDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text == "البنك" or text == "بنك" or text == "بنكي" then
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
+data = {
+{
+},
+{
+{text = 'إخفاء الأمر', data = msg.sender.user_id..'/delAmr'},
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,'*- اوامر البنك :\n\n ‹ : انشاء حساب بنكي  ↫ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n ‹ : مسح حساب بنكي  ↫ تلغي حسابك البنكي\n\n ‹ : تحويل ↫ تطلب رقم حساب الشخص وتحول له فلوس\n\n ‹ : حسابي  ↫ يطلع لك رقم حسابك عشان تطيه للشخص اللي بيحول لك\n\n ‹ : فلوسي ↫ يعلمك كم فلوسك\n\n ‹ : راتب ↫ يعطيك راتب كل ١٠ دقائق\n\n ‹ : بخشيش ↫ يعطيك بخشيش كل ١٠ دقايق\n\n ‹ : زرف ↫ تزرف فلوس اشخاص كل ١٠ دقايق\n\n ‹ : استثمار ↫ تستثمر بالمبلغ اللي تريده مع نسبة ربح مضمونه من ١٪؜ الى
+١٥٪؜\n\n ‹ : حظ ↫ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n ‹ : مضاربه ↫ تضارب بأي مبلغ تريده والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n ‹ : توب الفلوس ↫ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n ‹ : توب الحراميه ↫ يطلع لك اكثر ناس زرفوا\n\n ‹ : زواج  ↫ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n ‹ : طلاق ↫ يطلقك اذا متزوج\n\n ‹ : خلع  ↫ يخلع زوجك ويرجع له المهر\n\n ‹ : زواجات*',"md",true)  
+end
 if text == "توب الحراميه" or text == "الحراميه" then
 local bank_users = Redis:smembers(itsSnap.."zrfffidtf")
 if #bank_users == 0 then
@@ -5864,21 +5878,7 @@ if text == 'تصفير فلوسي' then
 Redis:del(itsSnap.."nool:flotysb"..msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, "تم تصفير فلوسك","md",true)
 end
-if text == "البنك" or text == "بنك" or text == "بنكي" then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-},
-{
-{text = 'إخفاء الأمر', data = msg.sender.user_id..'/delAmr'},
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,'- اوامر البنك :\n\n ‹ : انشاء حساب بنكي  ↫ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n ‹ : مسح حساب بنكي  ↫ تلغي حسابك البنكي\n\n ‹ : تحويل ↫ تطلب رقم حساب الشخص وتحول له فلوس\n\n ‹ : حسابي  ↫ يطلع لك رقم حسابك عشان تطيه للشخص اللي بيحول لك\n\n ‹ : فلوسي ↫ يعلمك كم فلوسك\n\n ‹ : راتب ↫ يعطيك راتب كل ١٠ دقائق\n\n ‹ : بخشيش ↫ يعطيك بخشيش كل ١٠ دقايق\n\n ‹ : زرف ↫ تزرف فلوس اشخاص كل ١٠ دقايق\n\n ‹ : استثمار ↫ تستثمر بالمبلغ اللي تريده مع نسبة ربح مضمونه من ١٪؜ الى
 
-١٥٪؜\n\n ‹ : حظ ↫ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n ‹ : مضاربه ↫ تضارب بأي مبلغ تريده والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n ‹ : توب الفلوس ↫ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n ‹ : توب الحراميه ↫ يطلع لك اكثر ناس زرفوا\n\n ‹ : زواج  ↫ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n ‹ : طلاق ↫ يطلقك اذا متزوج\n\n ‹ : خلع  ↫ يخلع زوجك ويرجع له المهر\n\n ‹ : زواجات',"md",false, false, false, false, reply_markup)
-end
 if text == 'حظ' then
 if Redis:get(itsSnap.."nnooo" .. msg.sender.user_id) then  
 local check_time = Redis:ttl(itsSnap.."nnooo" .. msg.sender.user_id)
